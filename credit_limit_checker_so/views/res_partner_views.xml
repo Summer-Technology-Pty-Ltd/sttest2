@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_partner_form_inherit_credit_limit" model="ir.ui.view">
+        <field name="name">view.partner.form.inherit.credit.limit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="/form/sheet/notebook/page[@name='sales_purchases']/group/group[@name='sale']/field[@name='user_id']" position="before">
+        		<field name="credit_limit"/>
+        		<field name="credit" readonly="1"/>
+        		<field name="is_over_credit"/>
+        		<field name="over_credit_action"/>
+        	</xpath>
+		</field>
+    </record>
+    <record id="view_partner_tree_inherit_credit_limit" model="ir.ui.view">
+        <field name="name">view.partner.tree.inherit.credit.limit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+        	<xpath expr="/tree" position="attributes">
+        		 <attribute name="decoration-danger">"is_over_credit==True"</attribute>
+        	</xpath>
+        	<xpath expr="/tree" position="inside">
+        		<field name="is_over_credit" invisible="1"/>
+        	</xpath>
+		</field>
+    </record>
+</odoo>
